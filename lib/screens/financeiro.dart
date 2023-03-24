@@ -14,63 +14,52 @@ class _FinanceiroState extends State<Financeiro> {
     return Container(
       height: 150,
       width: double.infinity,
+      
       decoration: const BoxDecoration(
+        color: Colors.blue,
+        borderRadius: BorderRadius.vertical(top:Radius.zero, bottom: Radius.circular(30)),
         boxShadow: [
-          BoxShadow(
-            blurRadius: 10.0,
-          ),
-        ],
+          BoxShadow(blurRadius: 10.0,),],
       ),
-    
       
       child: Container(
-        color: Colors.blue,
+        padding: EdgeInsets.symmetric(horizontal:25),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal:25),
-              child: SizedBox(  
-                width: double.infinity,
-                child:Text(
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
-                  'Seu capital:'),
-              ),
+            SizedBox(  
+              width: double.infinity,
+              child:Text(
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+                'Seu capital:'),
             ),
             
             // ignore: prefer_const_literals_to_create_immutables
             Row(
-              
               // ignore: prefer_const_literals_to_create_immutables
               children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal:25),
-                child: Text(
-                  style: TextStyle(
-                    fontSize: 45,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),'R\$ 1526,30'),
-              ),
+              Text(
+                style: TextStyle(
+                  fontSize: 40,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),'R\$ 1526,30'),
               Icon(Icons.visibility,
-              size: 50.0,
+              size: 40.0,
               color: Colors.white)
             ],),
 
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: OutlinedButton(
-                onPressed: () {  },
-                child: Text(style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold),'Ver Extrato'),
-                      style: OutlinedButton.styleFrom(
+            OutlinedButton(
+              onPressed: () {  },
+                    style: OutlinedButton.styleFrom(
     side: BorderSide(width: 3.0, color: Colors.white),),
-                      ),
-            )
+              child: Text(style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold),'Ver Extrato'),
+                    )
           ]),
       ),
     );
