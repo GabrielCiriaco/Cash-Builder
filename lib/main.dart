@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:casher/screens/botoes.dart';
+import 'package:casher/screens/drawer.dart';
 import 'package:casher/screens/grafico.dart';
 import 'package:flutter/material.dart';
 import 'package:casher/screens/financeiro.dart';
@@ -25,10 +26,8 @@ class _MyHomePageState extends State<MyHomePage> {
           title: const Text('Inicio'),
         ),
 
-        drawer: Drawer(
-          child: Text('asdasdasdasd'),  
-        ),
-
+        drawer: Menu(),  
+      
         body: SingleChildScrollView(
           child: Column(  
             // ignore: prefer_const_literals_to_create_immutables
