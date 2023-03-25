@@ -3,6 +3,7 @@ import 'package:casher/screens/botoes.dart';
 import 'package:casher/screens/drawer.dart';
 import 'package:casher/screens/extrato.dart';
 import 'package:casher/screens/grafico.dart';
+import 'package:casher/screens/metas.dart';
 import 'package:casher/screens/tiposmov.dart';
 import 'package:flutter/material.dart';
 import 'package:casher/screens/financeiro.dart';
@@ -51,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
       routes: {
         '/extrato':(_) => Extrato(),
         '/meu-fluxo':(_) => TiposMov(),
+        '/metas':(_) => Metas(),
       },
     );
   }

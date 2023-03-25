@@ -22,8 +22,9 @@ class Menu extends StatelessWidget{
           title: Text('Meu fluxo'),
           ),
           ListTile(
-          leading: Icon(Icons.account_circle),
-          title: Text('Profile'),
+            onTap: ()=>Navigator.of(context).pushNamed('/metas'),
+          leading: Icon(Icons.flag_outlined),
+          title: Text('Metas'),
           ),
           ListTile(
           leading: Icon(Icons.settings),
