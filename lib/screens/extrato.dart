@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 
@@ -37,6 +39,22 @@ class _ExtratoState extends State<Extrato> {
               )
             ),
           ),
+        ),
+
+        Container(
+          height: MediaQuery.of(context).size.height*0.7,
+          child:ListView(
+            // ignore: prefer_const_literals_to_create_immutables
+            children: [
+              ListTile(
+                          leading:Icon(Icons.circle_sharp),
+                          title: Text('asd'),
+                          trailing: Icon(Icons.delete_outline),
+                        ),
+            ]
+          ),
+
+
         )
 
         
