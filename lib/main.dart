@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:casher/screens/botoes.dart';
 import 'package:casher/screens/drawer.dart';
+import 'package:casher/screens/extrato.dart';
 import 'package:casher/screens/grafico.dart';
+import 'package:casher/screens/tiposmov.dart';
 import 'package:flutter/material.dart';
 import 'package:casher/screens/financeiro.dart';
 
@@ -15,6 +17,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,6 +48,10 @@ class _MyHomePageState extends State<MyHomePage> {
         //   child: const Icon(Icons.add),
         // ), 
       ),
+      routes: {
+        '/extrato':(_) => Extrato(),
+        '/meu-fluxo':(_) => TiposMov(),
+      },
     );
   }
 }
