@@ -42,8 +42,8 @@ class TiposMov extends StatelessWidget {
                       color: Colors.blue,
                       fontWeight: FontWeight.bold),'Entradas:'),
                 ),
-                Container(
-                  height: MediaQuery.of(context).size.height*0.7,
+                Expanded(
+                  
                   child: ListView(
                   // ignore: prefer_const_literals_to_create_immutables
                     children: [
@@ -73,22 +73,19 @@ class TiposMov extends StatelessWidget {
                       color: Colors.blue,
                       fontWeight: FontWeight.bold),'Entradas:'),
                 ),
-                Card(
-                  margin: EdgeInsets.all(10),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height*0.35,
-                    child: ListView(
-                    // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        Card(
-                          child: ListTile(
-                            leading:Icon(Icons.circle_sharp),
-                            title: Text('asd'),
-                            trailing: Icon(Icons.delete_outline),
-                          ),
-                        )
-                      ],
-                    ),
+                Expanded(
+                 
+                  child: ListView(
+                  // ignore: prefer_const_literals_to_create_immutables
+                    children: [
+                      Card(
+                        child: ListTile(
+                          leading:Icon(Icons.circle_sharp),
+                          title: Text('asd'),
+                          trailing: Icon(Icons.delete_outline),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ])
