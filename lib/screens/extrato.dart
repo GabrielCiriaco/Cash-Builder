@@ -99,7 +99,7 @@ class _ExtratoState extends State<Extrato> {
                           trailing: Icon(Icons.delete_outline),
                         );
         
-            }).toList()?? [],
+            }).toList(),
             
           ),
         )
