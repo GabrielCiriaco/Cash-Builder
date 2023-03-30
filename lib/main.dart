@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors
-import 'package:casher/screens/botoes.dart';
-import 'package:casher/screens/drawer.dart';
-import 'package:casher/screens/extrato.dart';
-import 'package:casher/screens/grafico.dart';
+import 'package:casher/screens/Tela_Inicial/botoes.dart';
+import 'package:casher/screens/creditos.dart';
+import 'package:casher/screens/Tela_Inicial/drawer.dart';
+import 'package:casher/screens/Tela_Movimentacoes/extrato.dart';
+import 'package:casher/screens/Tela_Inicial/grafico.dart';
 import 'package:casher/screens/metas.dart';
 import 'package:casher/screens/tiposmov.dart';
 import 'package:flutter/material.dart';
-import 'package:casher/screens/financeiro.dart';
+import 'package:casher/screens/Tela_Inicial/financeiro.dart';
 
 void main() {
   runApp(MyHomePage());
@@ -53,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         '/extrato':(_) => Extrato(),
         '/meu-fluxo':(_) => TiposMov(),
         '/metas':(_) => Metas(),
+        '/creditos':(_) => Creditos(),
       },
     );
   }

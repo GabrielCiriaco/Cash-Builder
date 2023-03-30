@@ -32,12 +32,27 @@ class _ExtratoState extends State<Extrato> {
   }
 
   void insereTransaction(movimentacao mov) async{
+    //mov.id = Uuid().v1();
+    //mov.titulo = mov.id;
     setState(() {
       listaMovimentacoes.add(json.encode(mov.toJson()));
     });
 
     await prefs.setStringList('movimentacoes', listaMovimentacoes);
   }
+
+  void removeTransaction(movimentacao mov) async{
+    
+   
+    
+    setState(() {
+       listaMovimentacoes.removeWhere((item)=> movimentacao.fromJson(json.decode(item)).id == mov.id);
+    
+    });
+
+    await prefs.setStringList('movimentacoes', listaMovimentacoes);
+  }
+
   @override
   void initState() {
     getListaTransactions();
@@ -95,8 +110,13 @@ class _ExtratoState extends State<Extrato> {
                   print(lista);
                   },
                           leading:Icon(Icons.circle_sharp),
-                          title: Text(movimentacao.fromJson(json.decode(movi)).titulo  ),
-                          trailing: Icon(Icons.delete_outline),
+                          title: Text(movimentacao.fromJson(json.decode(movi)).id ),
+                          trailing: InkWell(
+                            onTap:(){
+                              removeTransaction(movimentacao.fromJson(json.decode(movi)));
+                            },
+                            child:Icon(Icons.delete_outline),
+                          )
                         );
         
             }).toList(),
