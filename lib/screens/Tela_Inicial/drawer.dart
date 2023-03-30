@@ -27,6 +27,7 @@ class Menu extends StatelessWidget{
           title: Text('Metas'),
           ),
           ListTile(
+            onTap: ()=> Navigator.of(context).pushNamed('/creditos'),
           leading: Icon(Icons.settings),
           title: Text('Settings'),
           ),

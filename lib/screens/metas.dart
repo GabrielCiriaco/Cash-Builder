@@ -1,11 +1,48 @@
-// ignore_for_file: prefer_const_constructors
 
+import 'package:casher/models/meta.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
+import 'dart:convert';
 
-class Metas extends StatelessWidget {
+
+class Metas extends StatefulWidget {
   const Metas({super.key});
+
+  @override
+  State<Metas> createState() => _MetasState();
+}
+
+class _MetasState extends State<Metas> {
+  late final SharedPreferences prefs;
+  late List <String>listaMetas; 
+  var meta1 = Meta(total: 200, valor: 200,titulo:'asdad',id:Uuid().v1());
+  
+  
+  void getListaMetas() async{
+    prefs = await SharedPreferences.getInstance();
+    
+    //await prefs.setStringList('movimentacoes', []);
+    setState(() {
+      listaMetas = (prefs.getStringList('Metas')?? []);
+    });
+
+  }
+
+  void insereMeta(Meta metaUnit) async{
+    setState(() {
+      listaMetas.add(json.encode(metaUnit.toJson()));
+    });
+
+    await prefs.setStringList('Metas', listaMetas);
+  }
+  @override
+  void initState() {
+    getListaMetas();
+    // TODO: implement initState
+    super.initState();
+
+  }  
 
   @override
   Widget build(BuildContext context) {
@@ -13,40 +50,48 @@ class Metas extends StatelessWidget {
       appBar: AppBar(
         title: Text('Metas'),
         centerTitle: true,
+
+      ),
+      
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          insereMeta(meta1);
+          },
+        label: const Text('Approve'),
+        icon: const Icon(Icons.thumb_up),
+        backgroundColor: Colors.pink,
       ),
 
-      body: ListView(
-        children: [
-          Card(
-            margin: EdgeInsets.symmetric(horizontal: 15),
-            child: Column(
-              children: [
-                Row(
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    Icon(Icons.travel_explore),
-                    Text('Viagem para disney')
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: Text('R\$ 15000'),
-                ),
-                Row(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 15),
-                      width: double.infinity,
-                      color: Colors.black45,
-                    ),
-                    Text('data')
-                  ],
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+      body: Column(
+        children: [Expanded(
+          child: ListView(
+            children:listaMetas.map((metaUnit){
+              return   Card(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.trip_origin),
+                      Text('data')
+                    ],
+                  ),
+                  Text('data'),
+                  Row(
+                    children: [
+                      Container(),
+                      Text('data')
+                    ],
+                  )
+                ],
+              )
+            );
+            
+            }).toList()
+            
+          ),
+        ),
+        ]
+      )
     );
   }
 }
