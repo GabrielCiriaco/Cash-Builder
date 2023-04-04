@@ -2,10 +2,12 @@
 
 import 'package:casher/models/movimentacao.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:convert';
+
+import '../../provider/dataCenter.dart';
 
 class Extrato extends StatefulWidget{
 
@@ -19,50 +21,12 @@ class _ExtratoState extends State<Extrato> {
   var mov = movimentacao(tipo: 'entrada', titulo: 'teste', descricao: 'descrição de um teste', valor: 200, data: '45/45/45', id: Uuid().v1());
   var mov2 = movimentacao(tipo: 'saida', titulo: 'teste', descricao: 'descrição de um teste', valor: 200, data: '45/45/45', id: Uuid().v1());
   late final SharedPreferences prefs;
-  late List <String>listaMovimentacoes; 
-  
-  void getListaTransactions() async{
-    prefs = await SharedPreferences.getInstance();
-    
-    //await prefs.setStringList('movimentacoes', []);
-    setState(() {
-      listaMovimentacoes = (prefs.getStringList('movimentacoes')?? []);;
-    });
-
-  }
-
-  void insereTransaction(movimentacao mov) async{
-    //mov.id = Uuid().v1();
-    //mov.titulo = mov.id;
-    setState(() {
-      listaMovimentacoes.add(json.encode(mov.toJson()));
-    });
-
-    await prefs.setStringList('movimentacoes', listaMovimentacoes);
-  }
-
-  void removeTransaction(movimentacao mov) async{
-    
-   
-    
-    setState(() {
-       listaMovimentacoes.removeWhere((item)=> movimentacao.fromJson(json.decode(item)).id == mov.id);
-    
-    });
-
-    await prefs.setStringList('movimentacoes', listaMovimentacoes);
-  }
-
-  @override
-  void initState() {
-    getListaTransactions();
-    // TODO: implement initState
-    super.initState();
-
-  }  
 
   @override 
   Widget build(BuildContext context){
+    final provider = Provider.of<DataCenter>(context);
+    List <String>listaMovimentacoes = provider.listaMovimentacoes;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -70,7 +34,7 @@ class _ExtratoState extends State<Extrato> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          insereTransaction(mov);
+          provider.insereTransaction(mov);
           print(listaMovimentacoes.length);
           },
         label: const Text('Approve'),
@@ -113,7 +77,7 @@ class _ExtratoState extends State<Extrato> {
                           title: Text(movimentacao.fromJson(json.decode(movi)).id ),
                           trailing: InkWell(
                             onTap:(){
-                              removeTransaction(movimentacao.fromJson(json.decode(movi)));
+                              provider.removeTransaction(movimentacao.fromJson(json.decode(movi)));
                             },
                             child:Icon(Icons.delete_outline),
                           )
